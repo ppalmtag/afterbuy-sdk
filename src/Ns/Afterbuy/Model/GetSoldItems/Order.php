@@ -83,6 +83,14 @@ class Order extends AbstractOrder
     protected $paymentInfo;
 
     /**
+     * @Serializer\Type("string")
+     * @Serializer\Accessor(setter="setContainseBayPlusTransactionFromString")
+     * @Serializer\SerializedName("ContainseBayPlusTransaction")
+     * @var bool
+     */
+    protected $containseBayPlusTransaction;
+
+    /**
      * @Serializer\Type("Ns\Afterbuy\Model\GetSoldItems\BuyerInfo")
      * @Serializer\SerializedName("BuyerInfo")
      * @var BuyerInfo
@@ -110,6 +118,14 @@ class Order extends AbstractOrder
      * @var VorgangsInfo
      */
     protected $vorgangsInfo;
+
+    /**
+     * @param string $value
+     */
+    public function setContainseBayPlusTransactionFromString($value)
+    {
+        $this->containseBayPlusTransaction = $this->setBooleanFromString($value);
+    }
 
     /**
      * @return string
@@ -189,6 +205,14 @@ class Order extends AbstractOrder
     public function getPaymentInfo()
     {
         return $this->paymentInfo;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isContainseBayPlusTransaction(): bool
+    {
+        return $this->containseBayPlusTransaction;
     }
 
     /**

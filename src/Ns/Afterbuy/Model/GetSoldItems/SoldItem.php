@@ -135,6 +135,20 @@ class SoldItem extends AbstractModel
     protected $taxRate;
 
     /**
+     * @Serializer\Type("integer")
+     * @Serializer\SerializedName("TaxCollectedBy")
+     * @var int
+     */
+    protected $taxCollectedBy;
+
+    /**
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("PlatformTaxReference")
+     * @var string
+     */
+    protected $platformTaxReference;
+
+    /**
      * @Serializer\Type("Ns\Afterbuy\Model\FloatType")
      * @Serializer\SerializedName("ItemWeight")
      * @var FloatType
@@ -373,6 +387,22 @@ class SoldItem extends AbstractModel
     public function getTaxRate()
     {
         return $this->taxRate->getValue();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTaxCollectedBy()
+    {
+        return $this->taxCollectedBy;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlatformTaxReference()
+    {
+        return $this->platformTaxReference;
     }
 
     /**
