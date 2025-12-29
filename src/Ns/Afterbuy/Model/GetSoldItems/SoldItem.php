@@ -222,14 +222,6 @@ class SoldItem extends AbstractModel
     protected $soldItemAttributes;
 
     /**
-     * @Serializer\Type("array<string>")
-     * @Serializer\XmlList(entry="Tag")
-     * @Serializer\SerializedName("Tags")
-     * @var array
-     */
-    protected $tags;
-
-    /**
      * @param int $value
      */
     public function setItemDetailsDoneFromInteger($value)
@@ -499,13 +491,5 @@ class SoldItem extends AbstractModel
     public function getSoldItemAttributes()
     {
         return $this->soldItemAttributes;
-    }
-
-    /**
-     * @return array
-     */
-    public function getTags()
-    {
-        return $this->tags;
     }
 }

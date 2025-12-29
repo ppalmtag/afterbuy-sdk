@@ -18,10 +18,9 @@ class BaseProductData extends AbstractModel
     protected $baseProductType;
 
     /**
-     * @Serializer\Type("array<Ns\Afterbuy\Model\GetSoldItems\ChildProduct>")
+     * @Serializer\Type("Ns\Afterbuy\Model\GetSoldItems\ChildProduct")
      * @Serializer\SerializedName("ChildProduct")
-     * @Serializer\XmlList(inline=true, entry="ChildProduct")
-     * @var ChildProduct[]
+     * @var ChildProduct
      */
     protected $childProduct;
 
@@ -34,7 +33,7 @@ class BaseProductData extends AbstractModel
     }
 
     /**
-     * @return ChildProduct[]
+     * @return ChildProduct
      */
     public function getChildProduct()
     {

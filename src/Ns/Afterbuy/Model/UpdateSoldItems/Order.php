@@ -119,13 +119,6 @@ class Order extends AbstractOrder
     protected $vorgangsInfo;
 
     /**
-     * @Serializer\Type("Ns\Afterbuy\Model\UpdateSoldItems\Tags")
-     * @Serializer\SerializedName("Tags")
-     * @var Tags
-     */
-    protected $tags;
-
-    /**
      * @return int
      */
     public function getOrderExportedAsInteger()
@@ -528,21 +521,4 @@ class Order extends AbstractOrder
 
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param mixed $tags
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-    }
-
 }

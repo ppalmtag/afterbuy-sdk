@@ -1,6 +1,6 @@
 <?php
 
-namespace Ns\Afterbuy\Model\UpdateShopProducts;
+namespace Ns\Afterbuy\Model\GetShopProducts;
 
 use JMS\Serializer\Annotation as Serializer;
 use Ns\Afterbuy\Model\AbstractAddBaseProduct;

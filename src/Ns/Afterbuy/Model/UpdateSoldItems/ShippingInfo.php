@@ -14,24 +14,10 @@ class ShippingInfo extends AbstractShippingInfo
 {
     /**
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("ShippingReturnMethod")
-     * @var string
-     */
-    protected $shippingReturnMethod;
-
-    /**
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("DeliveryService")
-     * @var string
-     */
-    protected $deliveryService;
-
-    /**
-     * @Serializer\Type("string")
      * @Serializer\SerializedName("ShippingGroup")
      * @var string
      */
-     protected $shippingGroup;
+    protected $shippingGroup;
 
     /**
      * @Serializer\Type("Ns\Afterbuy\Model\FloatType")
@@ -48,50 +34,6 @@ class ShippingInfo extends AbstractShippingInfo
      */
     protected $sendShippingMail;
 
-    /**
-     * @Serializer\Type("array<Ns\Afterbuy\Model\UpdateSoldItems\ParcelLabel>")
-     * @Serializer\XmlList(entry="ParcelLabel")
-     * @Serializer\SerializedName("ParcelLabels")
-     * @var ParcelLabel[]
-     */
-    protected $parcelLabels;
-    
-    /**
-     * @return string
-     */
-    public function getShippingReturnMethod()
-    {
-        return $this->shippingReturnMethod;
-    }
-
-    /**
-     * @param string $shippingReturnMethod
-     * @return $this
-     */
-    public function setShippingReturnMethod($shippingReturnMethod)
-    {
-        $this->shippingReturnMethod = $shippingReturnMethod;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDeliveryService()
-    {
-        return $this->deliveryService;
-    }
-
-    /**
-     * @param string $deliveryService
-     * @return $this
-     */
-    public function setDeliveryService($deliveryService)
-    {
-        $this->deliveryService = $deliveryService;
-        return $this;
-    }
-    
     /**
      * @return int
      */
@@ -203,26 +145,4 @@ class ShippingInfo extends AbstractShippingInfo
 
         return $this;
     }
-
-    /**
-     * @return ParcelLabel[]
-     */
-    public function getParcelLabels()
-    {
-        return $this->parcelLabels;
-    }
-
-
-    /**
-     * @param ParcelLabel[] $parcelLabels
-     *
-     * @return $this
-     */
-    public function setParcelLabels(array $parcelLabels)
-    {
-        $this->parcelLabels = $parcelLabels;
-
-        return $this;
-    }
-    
 }

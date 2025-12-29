@@ -1,25 +1,21 @@
 {
-    "name": "tibee/afterbuy-sdk",
+    "name": "next-sentence/afterbuy-sdk",
     "description": "The AfterbuySDK provides to interact with the Afterbuy XML API",
-    "keywords": ["afterbuy"],
-    "homepage": "http://github.com/tibee/afterbuy-sdk",
+    "keywords":     ["afterbuy"],
+    "homepage": "http://github.com/next-sentence/afterbuy-sdk",
     "license": "MIT",
     "authors": [
         {
             "name": "Petru Binzari",
             "email": "pekya1@gmail.com"
-        },
-        {
-            "name": "Tibor Balogh",
-            "email": "tibee@tibee.hu"
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^6.0|^7.0",
-        "jms/serializer": "^3.0",
-        "doctrine/annotations": "^2.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "jms/serializer": "^1.1",
+        "monolog/monolog": "~1.12"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-0": { "Ns\\Afterbuy\\": "src/" }
     }

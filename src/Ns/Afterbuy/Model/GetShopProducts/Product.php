@@ -483,13 +483,6 @@ class Product extends AbstractModel
     protected $productBrand;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\SerializedName("CustomsTariffNumber")
-     * @var int
-     */
-    protected $customsTariffNumber;
-
-    /**
      * @Serializer\Type("array<string>")
      * @Serializer\SerializedName("Catalogs")
      * @Serializer\XmlList(entry="CatalogID")
@@ -1154,14 +1147,6 @@ class Product extends AbstractModel
     public function getProductBrand()
     {
         return $this->productBrand;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCustomsTariffNumber()
-    {
-        return $this->customsTariffNumber;
     }
 
     /**
