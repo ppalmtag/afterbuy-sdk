@@ -2,7 +2,6 @@
 
 namespace Ns\Afterbuy\Client;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Psr\Log\LoggerAwareInterface;
@@ -10,8 +9,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use JMS\Serializer\Handler\ArrayCollectionHandler;
 use JMS\Serializer\Handler\HandlerRegistry;
-use JMS\Serializer\Handler\PhpCollectionHandler;
-use JMS\Serializer\Handler\PropelCollectionHandler;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializerBuilder;
@@ -86,7 +83,6 @@ class Request implements LoggerAwareInterface
      */
     public function __construct($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage, $doctypeWhitelist)
     {
-        AnnotationRegistry::registerLoader('class_exists');
 
         $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage);
         $this->client = new \GuzzleHttp\Client(array('base_uri' => $this->uri));
@@ -114,9 +110,7 @@ class Request implements LoggerAwareInterface
         return function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new DateHandler());
             $registry->registerSubscribingHandler(new FloatHandler());
-            $registry->registerSubscribingHandler(new PhpCollectionHandler());
             $registry->registerSubscribingHandler(new ArrayCollectionHandler());
-            $registry->registerSubscribingHandler(new PropelCollectionHandler());
         };
     }
 
@@ -130,14 +124,11 @@ class Request implements LoggerAwareInterface
 
     /**
      * @param LoggerInterface $logger
-     *
-     * @return $this
+     * @return void
      */
-    public function setLogger(LoggerInterface $logger)
+    public function setLogger(LoggerInterface $logger):void
     {
         $this->logger = $logger;
-
-        return $this;
     }
 
     /**
@@ -375,7 +366,7 @@ class Request implements LoggerAwareInterface
         $this->log(LogLevel::DEBUG, 'Posted to Afterbuy with the following options: ', $options);
 
         try {
-            $response = $this->client->request('POST', null, $options);
+            $response = $this->client->request('POST', '', $options);
             $this->log(LogLevel::DEBUG, sprintf('Afterbuy response: %s', $response->getBody()));
         } catch (BadResponseException $exception) {
             $this->log(LogLevel::ERROR, $exception->getMessage());

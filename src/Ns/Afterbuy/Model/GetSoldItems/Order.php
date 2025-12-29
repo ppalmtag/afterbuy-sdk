@@ -246,4 +246,5 @@ class Order extends AbstractOrder
     {
         return $this->vorgangsInfo;
     }
+
 }
