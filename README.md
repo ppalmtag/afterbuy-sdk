@@ -3,6 +3,12 @@ Installation
 
 There is no Packagist installable package yet.
  
+
+Requires
+----------------------------------------------------------------
+PHP's intl extension  
+PHP >= 7.4
+
 Usage
 ----------------------------------------------------------------
 

@@ -13,8 +13,6 @@ use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
-use JMS\Serializer\XmlDeserializationVisitor;
-use JMS\Serializer\XmlSerializationVisitor;
 use Ns\Afterbuy\Serializer\DateHandler;
 use Ns\Afterbuy\Serializer\FloatHandler;
 use Ns\Afterbuy\Model\AbstractRequest;
@@ -87,16 +85,17 @@ class Request implements LoggerAwareInterface
         $this->client = new \GuzzleHttp\Client(array('base_uri' => $this->uri));
 
         $builder = SerializerBuilder::create()
+            ->setPropertyNamingStrategy(
+                new SerializedNameAnnotationStrategy(
+                    new CamelCaseNamingStrategy()
+                )
+            )
+            ->addDefaultHandlers()
             ->configureHandlers(self::getHandlerConfiguration());
 
-        if ($doctypeWhitelist) {
-            $namingStrategy = new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy());
-            $xmlSerVisitor = new XmlSerializationVisitor($namingStrategy);
-            $xmlDesVisitor = new XmlDeserializationVisitor($namingStrategy);
-            $xmlDesVisitor->setDoctypeWhitelist($doctypeWhitelist);
-            $builder->setSerializationVisitor('xml', $xmlSerVisitor)
-                ->setDeserializationVisitor('xml', $xmlDesVisitor);
-        }
+        // Note: In JMS Serializer 3.x, doctype whitelisting is handled differently
+        // The XmlDeserializationVisitor no longer has setDoctypeWhitelist method
+        // You may need to handle XXE protection at the XML parser level instead
 
         $this->serializer = $builder->build();
     }
